@@ -1,4 +1,7 @@
--No release version yet.
+0.1.0
+-First released Alpha version.
+0.1.1
+-Fixed bug, that caused deck cards disappearing after the first round.
 
 
 -The sound isn't played.

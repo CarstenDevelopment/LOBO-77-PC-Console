@@ -552,6 +552,11 @@ namespace LOBO_77
 		openDeck.erase(openDeck.begin(), openDeck.end());  // The content of the vector "openDeck" gis getting completely erased.
 		openDeck.shrink_to_fit();  // Making sure, that there´s no free space left in the vector "openDeck".
 		std::random_shuffle(hiddenDeck.begin(), hiddenDeck.end());  // The order of the elements of the vector "hiddenDeck" is getting randomized.
+		for (unsigned char i = 0; i < activePlayers; i++)
+		{
+			round[i].resetDeck();
+			continue;  // The loop is getting continued.
+		}
 		unsigned char iterator = 0;  // An iterator for the vector "cardDispenser" is getting declared.
 		for (unsigned char i = 0; i < 5; i++)  // The cards are getting handed out to the players.
 		{
@@ -559,12 +564,11 @@ namespace LOBO_77
 			{
 				round[i2].getCard(hiddenDeck[iterator]);  // The cards are getting handed out to the players.
 				iterator++;  // The value of the iterator is getting raised.
-				continue;  // The loop is getting continued;
+				continue;  // The loop is getting continued.
 			}
 			continue;  // The loop is getting continued;
 		}
-		iterator--;
-		hiddenDeck.erase(hiddenDeck.begin(), hiddenDeck.begin() + iterator);  // The rest of the cards of the cardDispenser are getting added to the hidden card deck.
+		hiddenDeck.erase(hiddenDeck.begin(), hiddenDeck.begin() + iterator--);  // The rest of the cards of the cardDispenser are getting added to the hidden card deck.
 		hiddenDeck.shrink_to_fit();  // Making sure, that there´s no free space left in the vector "hiddenDeck".
 		return;  // The function is getting ended.
 	}
@@ -1254,8 +1258,8 @@ namespace LOBO_77
 int main(void)  // This function will be called first, when the game is started.
 {
 	std::system("title LOBO 77");  // The title of the window is getting changed.
-	std::system("color F1");  // The color of the output is getting set to White/Blue.
-	PlaySound(TEXT("music.mp3"), NULL, SND_FILENAME | SND_NODEFAULT | SND_ASYNC | SND_LOOP);  // The background music is getting started.
+	//std::system("color F1");  // The color of the output is getting set to White/Blue.
+	//PlaySound(TEXT("music.mp3"), NULL, SND_FILENAME | SND_NODEFAULT | SND_ASYNC | SND_LOOP);  // The background music is getting started.
 	//std::ifstream("settings.txt", std::fstream::in) >> LOBO_77::language;  // The language selection is getting read.
 	LOBO_77::updateTexts();  // The texts are getting loaded.
 	LOBO_77::menuOpen();  // LOBO 77 is getting started.
